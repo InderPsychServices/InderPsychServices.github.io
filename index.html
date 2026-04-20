@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inder Psychological Services | Forensic Immigration Evaluations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ──────────────────────────────────────────────────── */
+:root {
+  --ink:        #08111e;
+  --ink-mid:    #0e1d30;
+  --ink-lift:   #152540;
+  --gold:       #c8a45a;
+  --gold-hi:    #e2c07a;
+  --gold-dim:   rgba(200,164,90,0.55);
+  --gold-ghost: rgba(200,164,90,0.07);
+  --cream:      #ede8de;
+  --cream-dim:  #a89e8e;
+  --mist:       #647384;
+  --rule:       rgba(200,164,90,0.16);
+  --white:      #ffffff;
+  --r: 0.5rem;
+}
+
+/* ─── RESET ───────────────────────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.72;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ─── CUSTOM CURSOR ───────────────────────────────────────────── */
+.cursor-dot {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.08s ease, opacity 0.2s;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.18s ease, width 0.3s, height 0.3s, border-color 0.3s;
+}
+body:hover .cursor-ring { opacity: 1; }
+
+/* ─── GRAIN ───────────────────────────────────────────────────── */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:0.032; pointer-events:none; z-index:9998;
+}
+
+/* ─── SCROLLBAR ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-track { background:var(--ink); }
+::-webkit-scrollbar-thumb { background:var(--gold-dim); }
+
+/* ─── NAVIGATION ──────────────────────────────────────────────── */
+nav {
+  position:fixed; top:0; left:0; right:0;
+  height:76px; z-index:1000;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 clamp(1.5rem,5vw,4.5rem);
+  transition:background 0.5s ease, border-color 0.5s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled {
+  background:rgba(8,17,30,0.94);
+  backdrop-filter:blur(22px);
+  border-bottom-color:var(--rule);
+}
+
+.nav-brand {
+  display:flex; flex-direction:column; gap:1px;
+  text-decoration:none;
+}
+.nav-brand-main {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem; font-weight:500;
+  letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--cream);
+}
+.nav-brand-sub {
+  font-size:0.55rem; font-weight:400;
+  letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--gold);
+}
+
+.nav-right {
+  display:flex; align-items:center; gap:2.8rem;
+}
+
+.nav-links {
+  display:flex; list-style:none;
+  gap:2.4rem; align-items:center;
+}
+.nav-links a {
+  font-size:0.67rem; font-weight:400;
+  letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--mist); text-decoration:none;
+  transition:color 0.3s;
+}
+.nav-links a:hover { color:var(--cream); }
+
+.nav-pill {
+  font-size:0.65rem; font-weight:500;
+  letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--gold); text-decoration:none;
+  border:1px solid var(--gold-dim);
+  padding:9px 24px;
+  transition:all 0.35s ease;
+  position:relative; overflow:hidden;
+}
+.nav-pill::before {
+  content:'';
+  position:absolute; inset:0;
+  background:var(--gold);
+  transform:translateX(-101%);
+  transition:transform 0.35s ease;
+}
+.nav-pill span { position:relative; z-index:1; }
+.nav-pill:hover::before { transform:translateX(0); }
+.nav-pill:hover span { color:var(--ink); }
+
+/* ─── MARQUEE ─────────────────────────────────────────────────── */
+.marquee-strip {
+  overflow:hidden;
+  background:var(--gold);
+  padding:10px 0;
+  position:relative; z-index:10;
+  margin-top:76px;
+}
+.marquee-track {
+  display:flex; gap:0;
+  animation:marquee 28s linear infinite;
+  white-space:nowrap;
+}
+.marquee-track:hover { animation-play-state:paused; }
+.marquee-item {
+  flex-shrink:0;
+  font-size:0.58rem; font-weight:500;
+  letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--ink);
+  padding:0 2.5rem;
+}
+.marquee-sep {
+  flex-shrink:0;
+  font-size:0.5rem; color:var(--ink);
+  opacity:0.5; padding:0 0.5rem;
+  align-self:center;
+}
+@keyframes marquee {
+  from { transform:translateX(0); }
+  to   { transform:translateX(-50%); }
+}
+
+/* ─── HERO ────────────────────────────────────────────────────── */
+.hero {
+  min-height:calc(100vh - 76px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Diagonal split line */
+.hero::before {
+  content:'';
+  position:absolute;
+  top:0; left:50%;
+  width:1px; height:100%;
+  background:linear-gradient(to bottom,transparent,var(--rule) 20%,var(--rule) 80%,transparent);
+  transform:rotate(0deg);
+}
+
+/* Ambient glow */
+.hero-glow {
+  position:absolute;
+  width:600px; height:600px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(200,164,90,0.06) 0%,transparent 70%);
+  top:-100px; left:-100px;
+  pointer-events:none;
+}
+
+.hero-left {
+  padding:clamp(3rem,8vw,7rem) clamp(2rem,5vw,5rem);
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative;
+}
+
+.eyebrow-row {
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:2.2rem;
+  opacity:0; animation:fadeUp 0.9s 0.2s ease forwards;
+}
+.eyebrow-dash { width:28px; height:1px; background:var(--gold); }
+.eyebrow-text {
+  font-size:0.62rem; font-weight:400;
+  letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--gold);
+}
+
+.hero-h1 {
+  font-family:'Cormorant',serif;
+  font-size:clamp(3.2rem,5.5vw,6.2rem);
+  font-weight:300;
+  line-height:1.06;
+  color:var(--cream);
+  margin-bottom:2.4rem;
+  opacity:0; animation:fadeUp 0.9s 0.35s ease forwards;
+}
+.hero-h1 em {
+  font-style:italic; color:var(--gold-hi);
+  font-weight:300;
+}
+
+.hero-lead {
+  font-size:0.88rem; font-weight:300;
+  color:var(--mist); line-height:1.9;
+  max-width:420px; margin-bottom:3rem;
+  opacity:0; animation:fadeUp 0.9s 0.5s ease forwards;
+}
+
+.hero-actions {
+  display:flex; gap:1.4rem; align-items:center;
+  flex-wrap:wrap;
+  opacity:0; animation:fadeUp 0.9s 0.65s ease forwards;
+}
+
+.btn-solid {
+  display:inline-block;
+  background:var(--gold);
+  color:var(--ink);
+  font-size:0.65rem; font-weight:500;
+  letter-spacing:0.24em; text-transform:uppercase;
+  text-decoration:none;
+  padding:16px 40px;
+  transition:all 0.35s ease;
+  position:relative; overflow:hidden;
+}
+.btn-solid::after {
+  content:'';
+  position:absolute; inset:0;
+  background:var(--gold-hi);
+  transform:translateX(-101%);
+  transition:transform 0.35s ease;
+}
+.btn-solid span { position:relative; z-index:1; }
+.btn-solid:hover::after { transform:translateX(0); }
+.btn-solid:hover { transform:translateY(-2px); box-shadow:0 16px 48px rgba(200,164,90,0.25); }
+
+.btn-line {
+  display:inline-flex; align-items:center; gap:10px;
+  color:var(--mist);
+  font-size:0.65rem; font-weight:400;
+  letter-spacing:0.2em; text-transform:uppercase;
+  text-decoration:none;
+  transition:color 0.3s;
+}
+.btn-line:hover { color:var(--gold); }
+.btn-line-arrow { transition:transform 0.3s; }
+.btn-line:hover .btn-line-arrow { transform:translateX(5px); }
+
+/* Hero right — stat stack */
+.hero-right {
+  display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(3rem,8vw,7rem) clamp(2rem,5vw,5rem);
+  gap:0;
+  opacity:0; animation:fadeUp 0.9s 0.45s ease forwards;
+}
+
+.hero-stat {
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  padding:2rem 0;
+  border-bottom:1px solid var(--rule);
+  gap:1rem;
+  transition:background 0.3s;
+  cursor:default;
+}
+.hero-stat:first-child { border-top:1px solid var(--rule); }
+.hero-stat:hover { padding-left:10px; }
+
+.hero-stat-body {}
+.hero-stat-n {
+  font-family:'Cormorant',serif;
+  font-size:3rem; font-weight:300;
+  color:var(--gold); line-height:1;
+  margin-bottom:0.3rem;
+  transition:color 0.3s;
+}
+.hero-stat:hover .hero-stat-n { color:var(--gold-hi); }
+.hero-stat-desc {
+  font-size:0.78rem; font-weight:300;
+  color:var(--mist); line-height:1.5;
+  max-width:260px;
+}
+
+.hero-stat-icon {
+  opacity:0.18;
+  transition:opacity 0.3s;
+}
+.hero-stat:hover .hero-stat-icon { opacity:0.45; }
+
+/* Lang pills row */
+.lang-pills {
+  display:flex; gap:0.6rem; flex-wrap:wrap;
+  padding:1.6rem 0 0;
+}
+.lpill {
+  font-size:0.6rem; font-weight:500;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid var(--rule);
+  padding:5px 14px;
+  background:var(--gold-ghost);
+  transition:border-color 0.3s, background 0.3s;
+}
+.lpill:hover { border-color:var(--gold-dim); background:rgba(200,164,90,0.12); }
+
+/* ─── SECTION HELPERS ─────────────────────────────────────────── */
+.sec {
+  padding:clamp(4rem,9vw,8.5rem) clamp(1.5rem,5vw,4.5rem);
+}
+.sec-alt { background:var(--ink-mid); }
+.sec-lift { background:var(--ink-lift); }
+
+.sec-head { max-width:760px; }
+.sec-tag {
+  display:inline-flex; align-items:center; gap:10px;
+  margin-bottom:1.4rem;
+}
+.sec-tag-line { width:24px; height:1px; background:var(--gold); }
+.sec-tag-label {
+  font-size:0.6rem; font-weight:500;
+  letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--gold);
+}
+.sec-h {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,3.8vw,4rem);
+  font-weight:300; line-height:1.15;
+  color:var(--cream); margin-bottom:1.2rem;
+}
+.sec-h em { font-style:italic; color:var(--gold-hi); }
+.sec-p {
+  font-size:0.86rem; font-weight:300;
+  color:var(--mist); line-height:1.9;
+  max-width:520px; margin-bottom:3.5rem;
+}
+
+/* ─── SERVICES ────────────────────────────────────────────────── */
+.services-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--rule);
+  border-left:1px solid var(--rule);
+}
+
+.svc {
+  border-bottom:1px solid var(--rule);
+  border-right:1px solid var(--rule);
+  padding:2.8rem 2.4rem;
+  position:relative; overflow:hidden;
+  transition:background 0.4s;
+  cursor:default;
+}
+.svc::after {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0;
+  height:2px; background:var(--gold);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform 0.5s ease;
+}
+.svc:hover { background:rgba(200,164,90,0.04); }
+.svc:hover::after { transform:scaleX(1); }
+
+.svc-index {
+  font-family:'Cormorant',serif;
+  font-size:4rem; font-weight:200;
+  color:rgba(200,164,90,0.09);
+  line-height:1; margin-bottom:1.5rem;
+  transition:color 0.4s;
+}
+.svc:hover .svc-index { color:rgba(200,164,90,0.18); }
+
+.svc-name {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem; font-weight:500;
+  color:var(--cream); margin-bottom:0.8rem;
+  line-height:1.25;
+}
+
+.svc-desc {
+  font-size:0.8rem; font-weight:300;
+  color:var(--mist); line-height:1.85;
+}
+
+.svc-badge {
+  display:inline-block; margin-top:1.4rem;
+  font-size:0.58rem; font-weight:500;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--gold-dim);
+  border:1px solid var(--rule);
+  padding:4px 12px;
+  transition:border-color 0.3s, color 0.3s;
+}
+.svc:hover .svc-badge { border-color:var(--gold-dim); color:var(--gold); }
+
+/* ─── ABOUT ───────────────────────────────────────────────────── */
+.about-wrap {
+  display:grid;
+  grid-template-columns:5fr 6fr;
+  gap:clamp(3rem,6vw,7rem);
+  align-items:start;
+}
+
+.about-visual { position:relative; }
+
+.about-card {
+  background:var(--ink-lift);
+  border:1px solid var(--rule);
+  aspect-ratio:3/4;
+  display:flex; flex-direction:column;
+  justify-content:flex-end;
+  overflow:hidden; position:relative;
+}
+
+.about-card-bg {
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to bottom right,rgba(200,164,90,0.04) 0%,transparent 50%),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(200,164,90,0.018) 40px,
+      rgba(200,164,90,0.018) 41px
+    );
+}
+
+.about-monogram {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Cormorant',serif;
+  font-size:12rem; font-weight:200;
+  color:rgba(200,164,90,0.07);
+  line-height:1; user-select:none;
+  white-space:nowrap;
+}
+
+.about-card-foot {
+  position:relative;
+  background:var(--gold);
+  padding:1.5rem 2rem;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.about-card-foot-name {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem; font-weight:500;
+  color:var(--ink); letter-spacing:0.04em;
+}
+.about-card-foot-cred {
+  font-size:0.62rem; font-weight:500;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:rgba(8,17,30,0.6);
+  margin-top:2px;
+}
+.about-card-foot-states {
+  font-size:0.6rem; font-weight:500;
+  letter-spacing:0.14em;
+  color:rgba(8,17,30,0.7);
+  text-align:right;
+}
+
+.about-ornament {
+  position:absolute; top:-18px; right:-18px;
+  width:72px; height:72px;
+  border-top:1.5px solid var(--gold);
+  border-right:1.5px solid var(--gold);
+  opacity:0.5;
+}
+.about-ornament-bl {
+  top:auto; right:auto;
+  bottom:-18px; left:-18px;
+  border-top:none; border-right:none;
+  border-bottom:1.5px solid var(--gold);
+  border-left:1.5px solid var(--gold);
+}
+
+.about-body {}
+.about-body .sec-p { max-width:100%; margin-bottom:1.5rem; }
+
+.about-body p {
+  font-size:0.87rem; font-weight:300;
+  color:var(--mist); line-height:1.95;
+  margin-bottom:1.4rem;
+}
+
+.about-creds {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:1px; margin:2.2rem 0;
+  border:1px solid var(--rule);
+  background:var(--rule);
+}
+.cred {
+  background:var(--ink-mid);
+  padding:1.2rem 1.4rem;
+  transition:background 0.3s;
+}
+.cred:hover { background:var(--ink-lift); }
+.cred-l {
+  font-size:0.58rem; font-weight:500;
+  letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:4px;
+}
+.cred-v {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.02rem; font-weight:500;
+  color:var(--cream);
+}
+
+/* ─── PROCESS ─────────────────────────────────────────────────── */
+.process-wrap {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(3rem,6vw,7rem);
+}
+
+.process-steps { display:flex; flex-direction:column; }
+
+.pstep {
+  display:flex; gap:2rem;
+  padding-bottom:2.8rem;
+  position:relative;
+  cursor:default;
+}
+.pstep:last-child { padding-bottom:0; }
+
+.pstep-left { display:flex; flex-direction:column; align-items:center; }
+
+.pstep-dot {
+  width:42px; height:42px; flex-shrink:0;
+  border:1px solid var(--rule);
+  background:var(--ink-mid);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant',serif;
+  font-size:1rem; font-weight:400;
+  color:var(--gold);
+  transition:all 0.35s;
+  position:relative; z-index:1;
+}
+.pstep:hover .pstep-dot {
+  background:var(--gold);
+  color:var(--ink);
+  border-color:var(--gold);
+}
+
+.pstep-spine {
+  flex:1; width:1px;
+  background:var(--rule);
+  margin:6px 0;
+}
+.pstep:last-child .pstep-spine { display:none; }
+
+.pstep-body { padding-top:8px; }
+.pstep-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem; font-weight:500;
+  color:var(--cream); margin-bottom:0.5rem;
+  transition:color 0.3s;
+}
+.pstep:hover .pstep-title { color:var(--gold-hi); }
+.pstep-desc {
+  font-size:0.81rem; font-weight:300;
+  color:var(--mist); line-height:1.9;
+}
+
+/* Sticky panel */
+.process-panel {
+  position:sticky; top:96px;
+  border:1px solid var(--rule);
+  background:var(--ink-lift);
+  align-self:start;
+  overflow:hidden;
+}
+
+.panel-head {
+  padding:2rem 2.4rem;
+  border-bottom:1px solid var(--rule);
+  background:var(--gold);
+}
+.panel-head-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem; font-weight:500;
+  color:var(--ink);
+}
+.panel-head-sub {
+  font-size:0.68rem; font-weight:400;
+  letter-spacing:0.12em; text-transform:uppercase;
+  color:rgba(8,17,30,0.55);
+  margin-top:3px;
+}
+
+.panel-body { padding:0 2.4rem; }
+
+.prow {
+  display:grid; grid-template-columns:auto 1fr;
+  gap:1rem; align-items:start;
+  padding:1.4rem 0;
+  border-bottom:1px solid rgba(200,164,90,0.08);
+}
+.prow:last-child { border-bottom:none; }
+
+.prow-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--gold); opacity:0.65;
+  margin-top:7px;
+}
+.prow-label {
+  font-size:0.62rem; font-weight:500;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:3px;
+}
+.prow-val {
+  font-size:0.83rem; font-weight:300;
+  color:var(--cream-dim);
+}
+
+/* ─── LANGUAGES ───────────────────────────────────────────────── */
+.lang-sec {
+  text-align:center;
+  position:relative; overflow:hidden;
+}
+.lang-sec::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%,rgba(200,164,90,0.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+.lang-center { position:relative; }
+
+.lang-display {
+  display:flex; justify-content:center; align-items:stretch;
+  flex-wrap:wrap;
+  margin:3.5rem 0;
+  border:1px solid var(--rule);
+  background:var(--ink-mid);
+}
+
+.lang-item {
+  flex:1; min-width:180px;
+  padding:2.8rem 2rem;
+  border-right:1px solid var(--rule);
+  display:flex; flex-direction:column;
+  align-items:center; gap:0.8rem;
+  transition:background 0.35s;
+  cursor:default;
+}
+.lang-item:last-child { border-right:none; }
+.lang-item:hover { background:rgba(200,164,90,0.04); }
+
+.lang-script {
+  font-family:'Cormorant',serif;
+  font-size:2rem; font-weight:300;
+  color:var(--cream); line-height:1.2;
+}
+.lang-name {
+  font-size:0.62rem; font-weight:500;
+  letter-spacing:0.24em; text-transform:uppercase;
+  color:var(--gold);
+}
+.lang-note {
+  font-size:0.68rem; font-weight:300;
+  color:var(--mist);
+}
+
+.lang-direct-note {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--gold-ghost);
+  border:1px solid var(--rule);
+  padding:12px 24px;
+}
+.lang-direct-note-text {
+  font-size:0.75rem; font-weight:300;
+  color:var(--cream-dim);
+}
+.lang-direct-note-text strong { color:var(--gold); font-weight:400; }
+
+/* ─── FAQ ─────────────────────────────────────────────────────── */
+.faq-wrap {
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:clamp(3rem,6vw,7rem);
+}
+
+.faq-sticky {
+  position:sticky; top:96px;
+  align-self:start;
+}
+
+.faq-list { border-top:1px solid var(--rule); }
+
+.faq-item { border-bottom:1px solid var(--rule); }
+
+.faq-btn {
+  width:100%; background:none; border:none;
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:1.5rem; padding:1.8rem 0;
+  cursor:pointer; text-align:left;
+}
+
+.faq-q {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem; font-weight:500;
+  color:var(--cream); line-height:1.35;
+  transition:color 0.3s;
+}
+.faq-btn:hover .faq-q,
+.faq-item.open .faq-q { color:var(--gold-hi); }
+
+.faq-toggle {
+  width:32px; height:32px; flex-shrink:0;
+  border:1px solid var(--rule);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold); transition:all 0.35s;
+  margin-top:2px;
+}
+.faq-item.open .faq-toggle {
+  background:var(--gold); color:var(--ink);
+  border-color:var(--gold);
+  transform:rotate(45deg);
+}
+
+.faq-body { max-height:0; overflow:hidden; transition:max-height 0.45s ease; }
+.faq-inner {
+  font-size:0.84rem; font-weight:300;
+  color:var(--mist); line-height:1.92;
+  padding-bottom:1.8rem;
+}
+
+/* ─── CONTACT ─────────────────────────────────────────────────── */
+.contact-grid {
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:clamp(3rem,6vw,7rem);
+}
+
+.contact-aside { display:flex; flex-direction:column; gap:1.5rem; }
+
+.cblock {
+  border:1px solid var(--rule);
+  padding:1.8rem 2rem;
+  background:var(--gold-ghost);
+  position:relative; overflow:hidden;
+  transition:border-color 0.3s, background 0.3s;
+}
+.cblock::before {
+  content:'';
+  position:absolute; left:0; top:0; bottom:0;
+  width:2px; background:var(--gold);
+  transform:scaleY(0); transform-origin:bottom;
+  transition:transform 0.35s ease;
+}
+.cblock:hover { border-color:var(--gold-dim); background:rgba(200,164,90,0.09); }
+.cblock:hover::before { transform:scaleY(1); }
+
+.cblock-label {
+  font-size:0.58rem; font-weight:500;
+  letter-spacing:0.26em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:0.6rem;
+}
+.cblock-val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem; font-weight:400;
+  color:var(--cream); text-decoration:none;
+  display:block; transition:color 0.3s;
+}
+a.cblock-val:hover { color:var(--gold-hi); }
+.cblock-note {
+  font-size:0.76rem; font-weight:300;
+  color:var(--mist); margin-top:4px;
+}
+
+/* Form */
+.cform { display:flex; flex-direction:column; gap:1.1rem; }
+.form-pair { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.fgroup { display:flex; flex-direction:column; gap:6px; }
+.flabel {
+  font-size:0.58rem; font-weight:500;
+  letter-spacing:0.24em; text-transform:uppercase;
+  color:var(--gold);
+}
+.finput, .fselect, .ftextarea {
+  background:var(--ink);
+  border:1px solid var(--rule);
+  border-bottom-color:rgba(200,164,90,0.3);
+  color:var(--cream);
+  font-family:'DM Sans',sans-serif;
+  font-size:0.84rem; font-weight:300;
+  padding:13px 16px;
+  outline:none; width:100%;
+  appearance:none;
+  transition:border-color 0.3s, background 0.3s;
+}
+.finput:focus, .fselect:focus, .ftextarea:focus {
+  border-color:var(--gold);
+  background:rgba(200,164,90,0.03);
+}
+.finput::placeholder, .ftextarea::placeholder {
+  color:var(--mist); opacity:0.55;
+}
+.fselect option { background:var(--ink); }
+.ftextarea { resize:none; height:110px; }
+
+.fsubmit {
+  display:inline-flex; align-items:center; gap:12px;
+  background:var(--gold); color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  font-size:0.65rem; font-weight:500;
+  letter-spacing:0.24em; text-transform:uppercase;
+  border:none; padding:16px 38px;
+  cursor:pointer; transition:all 0.35s ease;
+  align-self:flex-start; margin-top:0.4rem;
+  position:relative; overflow:hidden;
+}
+.fsubmit::after {
+  content:'';
+  position:absolute; inset:0;
+  background:var(--gold-hi);
+  transform:translateX(-101%);
+  transition:transform 0.35s;
+}
+.fsubmit span { position:relative; z-index:1; }
+.fsubmit:hover::after { transform:translateX(0); }
+.fsubmit:hover { box-shadow:0 14px 44px rgba(200,164,90,0.22); transform:translateY(-2px); }
+
+/* ─── FOOTER ──────────────────────────────────────────────────── */
+footer {
+  background:var(--ink);
+  border-top:1px solid var(--rule);
+}
+
+.footer-inner {
+  padding:3.5rem clamp(1.5rem,5vw,4.5rem);
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:3rem;
+  align-items:center;
+  border-bottom:1px solid var(--rule);
+}
+
+.footer-brand {}
+.footer-brand-name {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem; font-weight:500;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--cream); margin-bottom:4px;
+}
+.footer-brand-name span { color:var(--gold); }
+.footer-tagline {
+  font-size:0.72rem; font-weight:300;
+  font-style:italic;
+  color:var(--mist); line-height:1.6;
+}
+
+.footer-nav {
+  display:flex; flex-direction:column; gap:0.7rem;
+}
+.footer-nav a {
+  font-size:0.68rem; font-weight:300;
+  letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--mist); text-decoration:none;
+  transition:color 0.3s;
+}
+.footer-nav a:hover { color:var(--gold); }
+
+.footer-contact {}
+.footer-contact a {
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem; font-weight:400;
+  color:var(--cream); text-decoration:none;
+  transition:color 0.3s; margin-bottom:4px;
+}
+.footer-contact a:hover { color:var(--gold-hi); }
+.footer-contact-note {
+  font-size:0.7rem; font-weight:300;
+  color:var(--mist);
+}
+
+.footer-copy {
+  padding:1.4rem clamp(1.5rem,5vw,4.5rem);
+  display:flex; justify-content:space-between;
+  align-items:center; flex-wrap:wrap; gap:1rem;
+}
+.footer-copy-text {
+  font-size:0.68rem; font-weight:300;
+  color:var(--mist); opacity:0.55;
+}
+
+/* ─── REVEAL ANIMATION ────────────────────────────────────────── */
+.r {
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.85s ease, transform 0.85s ease;
+}
+.r.on { opacity:1; transform:translateY(0); }
+.r.d1 { transition-delay:0.1s; }
+.r.d2 { transition-delay:0.2s; }
+.r.d3 { transition-delay:0.3s; }
+.r.d4 { transition-delay:0.4s; }
+.r.d5 { transition-delay:0.5s; }
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width:960px) {
+  .hero { grid-template-columns:1fr; min-height:auto; }
+  .hero::before { display:none; }
+  .hero-right { display:none; }
+  .about-wrap, .process-wrap, .contact-grid { grid-template-columns:1fr; }
+  .process-panel { position:static; }
+  .faq-wrap { grid-template-columns:1fr; }
+  .faq-sticky { position:static; }
+  .services-grid { grid-template-columns:1fr 1fr; }
+  .footer-inner { grid-template-columns:1fr 1fr; }
+  .lang-display { flex-direction:column; }
+  .lang-item { border-right:none; border-bottom:1px solid var(--rule); }
+}
+@media (max-width:600px) {
+  .services-grid { grid-template-columns:1fr; }
+  .form-pair { grid-template-columns:1fr; }
+  .footer-inner { grid-template-columns:1fr; }
+  .nav-right .nav-links { display:none; }
+  .marquee-strip { margin-top:76px; }
+  body { cursor:auto; }
+  .cursor-dot, .cursor-ring { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot" id="dot"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#top" class="nav-brand">
+    <div class="nav-brand-main">Inder Psychological Services</div>
+    <div class="nav-brand-sub">Forensic Immigration Evaluations · PLLC</div>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#contact" class="nav-pill"><span>Refer a Client</span></a>
+  </div>
+</nav>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <!-- 2 copies for seamless loop -->
+    <span class="marquee-item">VAWA Evaluations</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Political Asylum</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">U-Visa Assessments</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">T-Visa Evaluations</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Hardship Waivers</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">NY · NJ · CA · WA · MI · WI · VI</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">English · Punjabi · Hindi</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">DSM-5 Aligned Reports</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Same-Day Attorney Response</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">VAWA Evaluations</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Political Asylum</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">U-Visa Assessments</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">T-Visa Evaluations</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Hardship Waivers</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">NY · NJ · CA · WA · MI · WI · VI</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">English · Punjabi · Hindi</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">DSM-5 Aligned Reports</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Same-Day Attorney Response</span><span class="marquee-sep">◆</span>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<section id="top" class="hero">
+  <div class="hero-glow"></div>
+
+  <div class="hero-left">
+    <div class="eyebrow-row">
+      <div class="eyebrow-dash"></div>
+      <div class="eyebrow-text">Forensic · Psychological · Immigration</div>
+    </div>
+    <h1 class="hero-h1">
+      Reports That<br>
+      <em>Hold Up</em><br>
+      In Court.
+    </h1>
+    <p class="hero-lead">
+      Mr. Singh provides comprehensive forensic psychological evaluations for immigration proceedings — authored with clinical precision, written for legal readability, and delivered on deadline.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-solid"><span>Refer a Client</span></a>
+      <a href="#services" class="btn-line">
+        View Services
+        <svg class="btn-line-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-stat">
+      <div class="hero-stat-body">
+        <div class="hero-stat-n">500+</div>
+        <div class="hero-stat-desc">Evaluations completed across federal immigration proceedings</div>
+      </div>
+      <div class="hero-stat-icon">
+        <svg width="40" height="40" fill="none" stroke="var(--gold)" stroke-width="1" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      </div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-body">
+        <div class="hero-stat-n">7</div>
+        <div class="hero-stat-desc">Active state licenses — serving clients nationally via telehealth</div>
+      </div>
+      <div class="hero-stat-icon">
+        <svg width="40" height="40" fill="none" stroke="var(--gold)" stroke-width="1" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-body">
+        <div class="hero-stat-n">10–15</div>
+        <div class="hero-stat-desc">Business day standard turnaround. Expedited available on request.</div>
+      </div>
+      <div class="hero-stat-icon">
+        <svg width="40" height="40" fill="none" stroke="var(--gold)" stroke-width="1" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+    </div>
+    <div class="lang-pills">
+      <span class="lpill">English</span>
+      <span class="lpill">Punjabi</span>
+      <span class="lpill">Hindi</span>
+      <span class="lpill">+ interpreter services</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services" class="sec sec-alt">
+  <div class="sec-head r">
+    <div class="sec-tag"><div class="sec-tag-line"></div><span class="sec-tag-label">Practice Areas</span></div>
+    <h2 class="sec-h">Evaluations We Conduct</h2>
+    <p class="sec-p">Every evaluation is personally conducted and authored by Mr. Singh. No associates. No contractors. Every report carries the full weight of his clinical expertise and professional licensure.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="svc r">
+      <div class="svc-index">01</div>
+      <div class="svc-name">VAWA Evaluations</div>
+      <div class="svc-desc">Psychological assessments for survivors of domestic violence pursuing immigration relief under the Violence Against Women Act. Clinically thorough, trauma-informed, and forensically sound.</div>
+      <span class="svc-badge">Domestic Violence · VAWA</span>
+    </div>
+    <div class="svc r d1">
+      <div class="svc-index">02</div>
+      <div class="svc-name">Political Asylum</div>
+      <div class="svc-desc">Comprehensive evaluations documenting the psychological sequelae of persecution, torture, and credible fear. Reports designed to clearly articulate trauma impact for immigration court proceedings.</div>
+      <span class="svc-badge">Asylum · Credible Fear</span>
+    </div>
+    <div class="svc r d2">
+      <div class="svc-index">03</div>
+      <div class="svc-name">U-Visa Evaluations</div>
+      <div class="svc-desc">Mental health assessments for crime victims pursuing U nonimmigrant status, documenting psychological harm from domestic violence, sexual assault, and human trafficking in a legally admissible format.</div>
+      <span class="svc-badge">Crime Victims · U-Visa</span>
+    </div>
+    <div class="svc r d3">
+      <div class="svc-index">04</div>
+      <div class="svc-name">T-Visa Evaluations</div>
+      <div class="svc-desc">Specialized forensic assessments for survivors of human trafficking, documenting the psychological impact of exploitation and coercion in support of T nonimmigrant status applications.</div>
+      <span class="svc-badge">Trafficking Survivors · T-Visa</span>
+    </div>
+    <div class="svc r d4">
+      <div class="svc-index">05</div>
+      <div class="svc-name">Hardship Waivers</div>
+      <div class="svc-desc">Extreme hardship evaluations for qualifying relatives, documenting the psychological consequences of separation. Clinically grounded narratives written to address USCIS hardship adjudication standards.</div>
+      <span class="svc-badge">I-601 · I-601A</span>
+    </div>
+    <div class="svc r d5">
+      <div class="svc-index">06</div>
+      <div class="svc-name">Naturalization Waivers</div>
+      <div class="svc-desc">Psychological evaluations supporting N-648 medical certification for applicants unable to satisfy English or civics requirements due to a documented mental or developmental impairment.</div>
+      <span class="svc-badge">N-648 · Naturalization</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" class="sec">
+  <div class="about-wrap">
+    <div class="about-visual r">
+      <div class="about-card">
+        <div class="about-card-bg"></div>
+        <div class="about-monogram">AS</div>
+        <div class="about-card-foot">
+          <div>
+            <div class="about-card-foot-name">Amrinder Singh, LCSW</div>
+            <div class="about-card-foot-cred">Licensed Clinical Social Worker</div>
+          </div>
+          <div class="about-card-foot-states">NY · NJ · CA<br>WA · MI · WI · VI</div>
+        </div>
+      </div>
+      <div class="about-ornament"></div>
+      <div class="about-ornament about-ornament-bl"></div>
+    </div>
+
+    <div class="about-body">
+      <div class="sec-tag r"><div class="sec-tag-line"></div><span class="sec-tag-label">About the Evaluator</span></div>
+      <h2 class="sec-h r">Mr. Singh, LCSW</h2>
+
+      <p class="r">Mr. Singh is a Licensed Clinical Social Worker with extensive, specialized experience in forensic psychological evaluations for immigration proceedings. He has personally authored hundreds of evaluations across federal immigration matters, serving attorneys and their clients throughout New York, New Jersey, California, Washington, Michigan, Wisconsin, and the U.S. Virgin Islands.</p>
+
+      <p class="r d1">A native Punjabi and Hindi speaker, Mr. Singh conducts evaluations directly in his clients' primary language — without a third-party interpreter. This fluency yields richer clinical interviews, more nuanced psychological narratives, and reports that read with an authenticity that distinguishes them from interpreter-mediated assessments.</p>
+
+      <p class="r d2">Attorneys engage Mr. Singh because his reports are comprehensive, timely, and authored with the standards of immigration court in mind. Every evaluation is conducted by Mr. Singh personally. Every report is written by Mr. Singh directly. There are no associates, no hand-offs, and no delegation.</p>
+
+      <div class="about-creds r d2">
+        <div class="cred"><div class="cred-l">Credential</div><div class="cred-v">LCSW — Active Licensure</div></div>
+        <div class="cred"><div class="cred-l">Licensed States</div><div class="cred-v">NY · NJ · CA · WA · MI · WI · VI</div></div>
+        <div class="cred"><div class="cred-l">Clinical Languages</div><div class="cred-v">English · Punjabi · Hindi</div></div>
+        <div class="cred"><div class="cred-l">Response Time</div><div class="cred-v">Same Business Day</div></div>
+      </div>
+
+      <a href="#contact" class="btn-solid r d3"><span>Work With Mr. Singh</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section id="process" class="sec sec-alt">
+  <div class="sec-head r">
+    <div class="sec-tag"><div class="sec-tag-line"></div><span class="sec-tag-label">How It Works</span></div>
+    <h2 class="sec-h">From Referral to<br><em>Delivered Report</em></h2>
+    <p class="sec-p">A streamlined, attorney-first process designed to minimize administrative burden and maximize report quality.</p>
+  </div>
+
+  <div class="process-wrap">
+    <div class="process-steps">
+      <div class="pstep r">
+        <div class="pstep-left">
+          <div class="pstep-dot">1</div>
+          <div class="pstep-spine"></div>
+        </div>
+        <div class="pstep-body">
+          <div class="pstep-title">Attorney Referral</div>
+          <div class="pstep-desc">Contact Mr. Singh directly by phone, text, or email with the client's name and evaluation type required. All attorney inquiries receive a same-day response — without exception.</div>
+        </div>
+      </div>
+      <div class="pstep r d1">
+        <div class="pstep-left">
+          <div class="pstep-dot">2</div>
+          <div class="pstep-spine"></div>
+        </div>
+        <div class="pstep-body">
+          <div class="pstep-title">Intake &amp; Scheduling</div>
+          <div class="pstep-desc">The client completes a brief intake. The evaluation is scheduled via a secure HIPAA-compliant telehealth link at the client's convenience. A 50% deposit is collected at scheduling; the balance is due prior to report release.</div>
+        </div>
+      </div>
+      <div class="pstep r d2">
+        <div class="pstep-left">
+          <div class="pstep-dot">3</div>
+          <div class="pstep-spine"></div>
+        </div>
+        <div class="pstep-body">
+          <div class="pstep-title">Clinical Evaluation</div>
+          <div class="pstep-desc">Mr. Singh conducts a comprehensive one-on-one clinical interview in the client's preferred language — directly, without an interpreter when Punjabi or Hindi is spoken. Validated psychometric instruments are administered and scored. Sessions typically run 60 to 90 minutes.</div>
+        </div>
+      </div>
+      <div class="pstep r d3">
+        <div class="pstep-left">
+          <div class="pstep-dot">4</div>
+          <div class="pstep-spine"></div>
+        </div>
+        <div class="pstep-body">
+          <div class="pstep-title">Report Preparation</div>
+          <div class="pstep-desc">Mr. Singh synthesizes interview findings, psychometric data, and clinical history into a complete forensic report. Every report is DSM-5 aligned, written in plain legal language, and reviewed personally before release.</div>
+        </div>
+      </div>
+      <div class="pstep r d4">
+        <div class="pstep-left">
+          <div class="pstep-dot">5</div>
+        </div>
+        <div class="pstep-body">
+          <div class="pstep-title">Delivery &amp; Follow-Up</div>
+          <div class="pstep-desc">The completed report is delivered securely to the referring attorney. Addendum services, supplemental documentation, and expert consultation are available upon request.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-panel r">
+      <div class="panel-head">
+        <div class="panel-head-title">Evaluation Summary</div>
+        <div class="panel-head-sub">Key terms &amp; logistics</div>
+      </div>
+      <div class="panel-body">
+        <div class="prow">
+          <div class="prow-dot"></div>
+          <div>
+            <div class="prow-label">Standard Turnaround</div>
+            <div class="prow-val">10–15 business days from evaluation date</div>
+          </div>
+        </div>
+        <div class="prow">
+          <div class="prow-dot"></div>
+          <div>
+            <div class="prow-label">Expedited Service</div>
+            <div class="prow-val">7-day turnaround available at additional fee</div>
+          </div>
+        </div>
+        <div class="prow">
+          <div class="prow-dot"></div>
+          <div>
+            <div class="prow-label">Platform</div>
+            <div class="prow-val">HIPAA-compliant secure video conferencing</div>
+          </div>
+        </div>
+        <div class="prow">
+          <div class="prow-dot"></div>
+          <div>
+            <div class="prow-label">Assessment</div>
+            <div class="prow-val">Validated psychometric instruments — listed in report appendix</div>
+          </div>
+        </div>
+        <div class="prow">
+          <div class="prow-dot"></div>
+          <div>
+            <div class="prow-label">Languages (Direct)</div>
+            <div class="prow-val">English, Punjabi, Hindi — spoken by Mr. Singh</div>
+          </div>
+        </div>
+        <div class="prow">
+          <div class="prow-dot"></div>
+          <div>
+            <div class="prow-label">Languages (Interpreter)</div>
+            <div class="prow-val">Urdu, Spanish — qualified interpreter provided</div>
+          </div>
+        </div>
+        <div class="prow">
+          <div class="prow-dot"></div>
+          <div>
+            <div class="prow-label">Payment Terms</div>
+            <div class="prow-val">50% to schedule · Balance prior to report release</div>
+          </div>
+        </div>
+        <div class="prow">
+          <div class="prow-dot"></div>
+          <div>
+            <div class="prow-label">Licensed Coverage</div>
+            <div class="prow-val">NY · NJ · CA · WA · MI · WI · VI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LANGUAGES ── -->
+<section class="sec lang-sec">
+  <div class="lang-center">
+    <div class="sec-tag r" style="justify-content:center">
+      <div class="sec-tag-line"></div>
+      <span class="sec-tag-label">Multilingual Capability</span>
+      <div class="sec-tag-line"></div>
+    </div>
+    <h2 class="sec-h r" style="text-align:center;margin:0 auto 1rem">Heard in Their Own Language.<br><em>From Day One.</em></h2>
+    <p class="sec-p r" style="text-align:center;margin:0 auto 2.5rem;max-width:580px">
+      Mr. Singh conducts evaluations directly in Punjabi and Hindi — with no interpreter present and no linguistic intermediary distorting the clinical exchange. The result is a more complete, more authentic, and more clinically defensible report.
+    </p>
+
+    <div class="lang-display r">
+      <div class="lang-item">
+        <div class="lang-script">English</div>
+        <div class="lang-name">English</div>
+        <div class="lang-note">Primary · Direct</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-script">ਪੰਜਾਬੀ</div>
+        <div class="lang-name">Punjabi</div>
+        <div class="lang-note">Native · Direct</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-script">हिन्दी</div>
+        <div class="lang-name">Hindi</div>
+        <div class="lang-note">Fluent · Direct</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-script" style="font-size:1.5rem;color:var(--mist)">اردو</div>
+        <div class="lang-name">Urdu</div>
+        <div class="lang-note">Via interpreter</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-script" style="color:var(--mist)">Español</div>
+        <div class="lang-name">Spanish</div>
+        <div class="lang-note">Via interpreter</div>
+      </div>
+    </div>
+
+    <div class="lang-direct-note r">
+      <svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <div class="lang-direct-note-text">Mr. Singh is a <strong>native Punjabi speaker</strong> and conducts all Punjabi and Hindi evaluations without an interpreter — preserving clinical fidelity from interview to report.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq" class="sec sec-alt">
+  <div class="faq-wrap">
+    <div class="faq-sticky">
+      <div class="sec-tag r"><div class="sec-tag-line"></div><span class="sec-tag-label">FAQ</span></div>
+      <h2 class="sec-h r" style="max-width:320px">Questions Attorneys Ask</h2>
+      <p class="sec-p r" style="max-width:320px;margin-bottom:2rem">Have a question not covered here? Call or text Mr. Singh directly at (516) 366-0247.</p>
+      <a href="tel:5163660247" class="btn-solid r"><span>Call Mr. Singh</span></a>
+    </div>
+
+    <div class="faq-list r">
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What constitutes an immigration psychological evaluation?</span>
+          <span class="faq-toggle"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-inner">An immigration psychological evaluation is a forensic mental health assessment conducted by a licensed clinician to document the psychological impact of trauma, persecution, domestic violence, or family separation on an individual involved in immigration proceedings. These evaluations are central to establishing the mental health state of the applicant, describing the hardships experienced, and articulating the long-term psychological consequences relevant to their legal matter. Mr. Singh's evaluations are DSM-5 aligned and written to meet the evidentiary standards of immigration courts and USCIS adjudicators.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What is the standard turnaround time?</span>
+          <span class="faq-toggle"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-inner">The standard turnaround is 10 to 15 business days from the date of the clinical evaluation. Expedited reports with a 7-business-day turnaround are available for an additional fee. Attorneys with upcoming filing deadlines are encouraged to contact Mr. Singh directly to discuss scheduling and timeline options.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">Is a formal diagnosis required for a hardship waiver evaluation?</span>
+          <span class="faq-toggle"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-inner">No. A formal psychiatric diagnosis is not a prerequisite for hardship waiver evaluations. Mr. Singh's evaluations focus on documenting psychological distress, functional impact, and the clinical narrative — all of which can be clinically supported without a diagnostic requirement. Where clinically indicated, diagnoses are provided and grounded in DSM-5 criteria. Mr. Singh will advise on appropriateness for the specific matter upon intake.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">In which states does Mr. Singh hold licensure?</span>
+          <span class="faq-toggle"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-inner">Mr. Singh holds active LCSW licensure in New York, New Jersey, California, Washington, Michigan, Wisconsin, and the U.S. Virgin Islands. Because all evaluations are conducted via HIPAA-compliant telehealth, Mr. Singh can serve clients located in any state in which he holds licensure, regardless of the client's physical location at the time of evaluation.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What psychometric instruments does Mr. Singh administer?</span>
+          <span class="faq-toggle"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-inner">Mr. Singh administers standardized, evidence-based psychometric instruments appropriate to the evaluation type and the client's clinical presentation. Specific instruments are enumerated in the report's appendix. Additional testing may be incorporated depending on the client's particular immigration situation and the type of visa or relief being sought.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">Does Mr. Singh work directly with attorneys throughout the process?</span>
+          <span class="faq-toggle"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-inner">Yes. Mr. Singh engages directly with referring attorneys from intake through report delivery. He responds to all attorney inquiries on the same business day and is available for consultation on case-specific considerations that may bear on the evaluation's scope or emphasis. All reports are delivered directly and securely to the referring attorney.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="sec sec-lift">
+  <div class="sec-head r">
+    <div class="sec-tag"><div class="sec-tag-line"></div><span class="sec-tag-label">Contact</span></div>
+    <h2 class="sec-h">Refer a Client or<br><em>Request a Consultation</em></h2>
+    <p class="sec-p">All attorney referrals and inquiries are personally handled by Mr. Singh and responded to the same business day.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-aside">
+      <div class="cblock r">
+        <div class="cblock-label">Phone &amp; Text</div>
+        <a href="tel:5163660247" class="cblock-val">(516) 366-0247</a>
+        <div class="cblock-note">Call or text — same-day response guaranteed</div>
+      </div>
+      <div class="cblock r d1">
+        <div class="cblock-label">Secure Email</div>
+        <a href="mailto:InderTherapy@proton.me" class="cblock-val">InderTherapy@proton.me</a>
+        <div class="cblock-note">End-to-end encrypted · HIPAA-sensitive communications welcome</div>
+      </div>
+      <div class="cblock r d2">
+        <div class="cblock-label">Base of Operations</div>
+        <div class="cblock-val" style="cursor:default">Queens, New York</div>
+        <div class="cblock-note">Evaluations conducted nationally via secure telehealth</div>
+      </div>
+      <div class="cblock r d3">
+        <div class="cblock-label">Licensed In</div>
+        <div class="cblock-val" style="cursor:default;font-size:1.05rem">NY · NJ · CA · WA · MI · WI · VI</div>
+        <div class="cblock-note">Active LCSW licensure in all seven jurisdictions</div>
+      </div>
+    </div>
+
+    <div class="r d1">
+      <form class="cform" onsubmit="return false;">
+        <div class="form-pair">
+          <div class="fgroup">
+            <label class="flabel">Attorney Name</label>
+            <input type="text" class="finput" placeholder="Full name">
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Law Firm</label>
+            <input type="text" class="finput" placeholder="Firm name">
+          </div>
+        </div>
+        <div class="form-pair">
+          <div class="fgroup">
+            <label class="flabel">Phone</label>
+            <input type="tel" class="finput" placeholder="(000) 000-0000">
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Email</label>
+            <input type="email" class="finput" placeholder="attorney@firm.com">
+          </div>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Evaluation Type</label>
+          <select class="fselect">
+            <option value="">Select evaluation type</option>
+            <option>VAWA Evaluation</option>
+            <option>Political Asylum</option>
+            <option>U-Visa Evaluation</option>
+            <option>T-Visa Evaluation</option>
+            <option>Hardship Waiver (I-601 / I-601A)</option>
+            <option>Naturalization Waiver (N-648)</option>
+            <option>Unsure — Please Advise</option>
+          </select>
+        </div>
+        <div class="form-pair">
+          <div class="fgroup">
+            <label class="flabel">Client Language</label>
+            <select class="fselect">
+              <option value="">Select language</option>
+              <option>English</option>
+              <option>Punjabi</option>
+              <option>Hindi</option>
+              <option>Urdu</option>
+              <option>Spanish</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Filing Deadline</label>
+            <input type="text" class="finput" placeholder="MM/DD/YYYY or flexible">
+          </div>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Additional Notes</label>
+          <textarea class="ftextarea" placeholder="Case details, special considerations, or any other relevant information..."></textarea>
+        </div>
+        <button type="submit" class="fsubmit"><span>Submit Referral &nbsp;→</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Inder <span>Psychological</span> Services, PLLC</div>
+      <div class="footer-tagline">Forensic evaluations attorneys<br>can submit with confidence.</div>
+    </div>
+    <nav class="footer-nav">
+      <a href="#services">Services</a>
+      <a href="#about">About Mr. Singh</a>
+      <a href="#process">Process</a>
+      <a href="#faq">Frequently Asked Questions</a>
+      <a href="#contact">Refer a Client</a>
+    </nav>
+    <div class="footer-contact">
+      <a href="tel:5163660247">(516) 366-0247</a>
+      <a href="mailto:InderTherapy@proton.me">InderTherapy@proton.me</a>
+      <div class="footer-contact-note">Queens, New York · Serving clients nationally</div>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <span class="footer-copy-text">© 2025 Inder Psychological Services, PLLC. All rights reserved.</span>
+    <span class="footer-copy-text">Licensed Clinical Social Work · Forensic Evaluations</span>
+  </div>
+</footer>
+
+<script>
+/* Custom cursor */
+const dot = document.getElementById('dot');
+const ring = document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  dot.style.left=mx+'px'; dot.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button,.svc,.hero-stat,.pstep,.lang-item,.cblock,.cred').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    ring.style.width='56px'; ring.style.height='56px';
+    ring.style.borderColor='var(--gold)';
+  });
+  el.addEventListener('mouseleave',()=>{
+    ring.style.width='36px'; ring.style.height='36px';
+    ring.style.borderColor='var(--gold-dim)';
+  });
+});
+
+/* Nav scroll */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* FAQ */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>{
+    i.classList.remove('open');
+    i.querySelector('.faq-body').style.maxHeight='0';
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    item.querySelector('.faq-body').style.maxHeight = item.querySelector('.faq-body').scrollHeight + 'px';
+  }
+}
+
+/* Scroll reveal */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); }});
+},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
