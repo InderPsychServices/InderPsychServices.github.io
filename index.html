@@ -965,6 +965,100 @@ footer {
   .cursor-dot, .cursor-ring { display:none; }
 }
 </style>
+
+  /* Enhanced Mobile Optimizations */
+  @media (max-width:480px) {
+  body { font-size: 14px; }
+  html { font-size: 14px; }
+  nav { height: 64px; padding: 0 1rem; }
+  .nav-brand-main { font-size: 0.9rem; }
+  .nav-brand-sub { font-size: 0.5rem; }
+  .nav-right { gap: 1.2rem; }
+  .nav-links { gap: 1.2rem; display: none; }
+  .nav-pill { padding: 8px 16px; font-size: 0.6rem; }
+  .marquee-strip { padding: 8px 0; margin-top: 64px; }
+  .marquee-item { padding: 0 1.2rem; font-size: 0.55rem; }
+  .sec { padding: 2.5rem 1rem; }
+  .hero { min-height: auto; padding-top: 2rem; }
+  .hero-h1 { font-size: clamp(2rem, 7vw, 3.5rem); margin-bottom: 1.5rem; }
+  .hero-lead { font-size: 0.78rem; max-width: 100%; }
+  .hero-actions { gap: 0.8rem; flex-direction: column; }
+  .btn-solid { padding: 14px 24px; font-size: 0.6rem; width: 100%; text-align: center; }
+  .btn-line { font-size: 0.6rem; width: 100%; justify-content: center; }
+  .sec-h { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+  .sec-p { font-size: 0.78rem; max-width: 100%; }
+  .svc { padding: 1.8rem 1.2rem; }
+  .svc-index { font-size: 2.5rem; margin-bottom: 1rem; }
+  .svc-name { font-size: 1.05rem; }
+  .svc-desc { font-size: 0.75rem; }
+  .about-wrap { gap: 2rem; }
+  .about-card { aspect-ratio: 3/4; }
+  .about-card-foot-name { font-size: 1rem; }
+  .about-card-foot-states { font-size: 0.55rem; }
+  .about-body .sec-p { max-width: 100%; }
+  .about-creds { grid-template-columns: 1fr; gap: 0; }
+  .cred-v { font-size: 0.95rem; }
+  .process-wrap { gap: 2rem; }
+  .pstep { gap: 1.2rem; padding-bottom: 2rem; }
+  .pstep-dot { width: 36px; height: 36px; font-size: 0.9rem; }
+  .pstep-title { font-size: 1rem; }
+  .pstep-desc { font-size: 0.75rem; }
+  .process-panel { position: static; }
+  .panel-head { padding: 1.5rem 1.5rem; }
+  .panel-head-title { font-size: 1.1rem; }
+  .prow { padding: 1rem 0; gap: 0.8rem; }
+  .prow-label { font-size: 0.55rem; }
+  .prow-val { font-size: 0.75rem; }
+  .lang-display { flex-direction: column; }
+  .lang-item { min-width: 120px; padding: 1.8rem 1.2rem; border-right: none; border-bottom: 1px solid var(--rule); }
+  .lang-item:last-child { border-bottom: none; }
+  .lang-script { font-size: 1.5rem; }
+  .lang-name { font-size: 0.58rem; }
+  .lang-direct-note { padding: 10px 16px; font-size: 0.7rem; }
+  .faq-wrap { gap: 1.5rem; }
+  .faq-btn { padding: 1.3rem 0; gap: 1rem; }
+  .faq-q { font-size: 1rem; }
+  .faq-toggle { width: 28px; height: 28px; }
+  .contact-grid { gap: 2rem; }
+  .cblock { padding: 1.3rem 1.2rem; }
+  .cblock-val { font-size: 1.2rem; }
+  .form-pair { grid-template-columns: 1fr; gap: 0.8rem; }
+  .fgroup { gap: 4px; }
+  .flabel { font-size: 0.55rem; }
+  .finput, .fselect, .ftextarea { font-size: 0.78rem; padding: 11px 12px; }
+  .ftextarea { height: 90px; }
+  .fsubmit { font-size: 0.6rem; padding: 13px 24px; width: 100%; justify-content: center; }
+  .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1rem; }
+  .footer-brand-name { font-size: 0.9rem; }
+  .footer-nav { gap: 0.5rem; }
+  .footer-nav a { font-size: 0.6rem; }
+  .footer-contact a { font-size: 1rem; }
+  .footer-copy { padding: 1rem; flex-direction: column; }
+  .footer-copy-text { font-size: 0.62rem; }
+  .eyebrow-row { margin-bottom: 1.5rem; }
+  .eyebrow-text { font-size: 0.58rem; }
+  .sec-tag { margin-bottom: 1rem; }
+  .sec-tag-label { font-size: 0.58rem; }
+  .hero-stat { padding: 1.5rem 0; }
+  .hero-stat-n { font-size: 2.2rem; margin-bottom: 0.2rem; }
+  .hero-stat-desc { font-size: 0.7rem; max-width: 100%; }
+  .lpill { font-size: 0.55rem; padding: 4px 10px; }
+  .cblock-label { font-size: 0.55rem; }
+  }
+
+  /* Touch-friendly button sizes */
+  @media (max-width:768px) {
+  .nav-pill, .btn-solid, .btn-line, .fsubmit { min-height: 44px; }
+  button, a[role="button"] { min-height: 44px; }
+  }
+
+  /* Improved font scaling for tablets */
+  @media (max-width:768px) and (min-width:481px) {
+  html { font-size: 15px; }
+  .hero-h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+  .sec-h { font-size: clamp(1.8rem, 4vw, 3rem); }
+  .services-grid { grid-template-columns: 1fr; }
+  }
 </head>
 <body>
 
