@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+·<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta name="google-site-verification" content="0l0YR81fQ9BYqUtyaTe6EQvhYEq6d8Th3IiAZBS8BY4" />
@@ -1048,6 +1048,15 @@ footer {
    .eyebrow-dash { display: none; }
     .eyebrow-text { letter-spacing: 0; }
 }
+
+  /* MOBILE FIX FOR EYEBROW TEXT */
+  @media (max-width:600px) {
+      .eyebrow-text {
+            letter-spacing: 0;
+            word-break: break-word;
+            line-height: 1.4;
+      }
+  }
 </style>
 </head>
 <body>
