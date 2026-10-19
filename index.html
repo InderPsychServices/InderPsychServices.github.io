@@ -1868,14 +1868,7 @@ function toggleFaq(btn) {
 }
 
 /* Referral form → pre-filled email */
-function sendReferral(e){
-  e.preventDefault();
-  var f=document.getElementById('referral-form'), lines=[];
-  Array.prototype.forEach.call(f.elements,function(el){ if(el.name && el.value) lines.push(el.name+': '+el.value); });
-  var subj='Attorney referral'+(f.elements['Evaluation type'].value?' — '+f.elements['Evaluation type'].value:'');
-  window.location.href='mailto:Support@InderTherapy.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));
-  return false;
-}
+function sendReferral(e){e.preventDefault();var f=document.getElementById('referral-form');var lines=[];Array.prototype.forEach.call(f.elements,function(el){ if(el.name && el.value) lines.push(el.name+': '+el.value); });var subj='Attorney referral'+(f.elements['Evaluation type'].value?' - '+f.elements['Evaluation type'].value:'');window.location.href='mailto:Support@InderTherapy.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join(String.fromCharCode(10)));var status=document.getElementById('referral-status');if(!status){ status=document.createElement('div'); status.id='referral-status'; status.setAttribute('role','status'); status.style.cssText='margin-top:14px;padding:12px 16px;border-radius:10px;background:#eef3fb;color:#1a3b6b;font-weight:600;border:1px solid #cdddf2;'; f.parentNode.insertBefore(status,f.nextSibling); }status.innerHTML='Your email program should now be opening with the referral pre-filled &mdash; just press <strong>Send</strong> and it comes straight to us. If nothing opened, please email us directly at <a href="mailto:Support@InderTherapy.com" style="color:inherit;">Support@InderTherapy.com</a>.';if(window.gtag){ gtag('event','form_submit',{event_category:'Lead',event_label:'Attorney Referral Form',value:1}); }return false;}
 
 /* Scroll reveal */
 const obs = new IntersectionObserver(entries=>{
